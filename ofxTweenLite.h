@@ -278,8 +278,7 @@ public:
     //-------------------------------------------------------------------------------------- object method for calling tweens.
     float go ( float from, float to, float progress, ofEaseFunction easingFunc )
     {
-        if( this->easingFunc != easingFunc )
-            setEasingFunction( easingFunc );
+        setEasingFunction( easingFunc );
         
         progress = ofClamp( progress, 0, 1 );
         
@@ -294,6 +293,9 @@ public:
     //-------------------------------------------------------------------------------------- selecting easing function.
     void setEasingFunction ( ofEaseFunction easeFunc )
     {
+        if( easingFunc == easeFunc )
+            return;
+        
         //------------------------------------------------- back.
         if( easeFunc == OF_EASE_BACK_IN ) { 
             easing = &easingBack;
